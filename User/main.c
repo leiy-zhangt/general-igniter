@@ -8,7 +8,8 @@
 #include "key.h"
 #include "fuse.h"
 #include "pwm.h"
-//test branch
+//测试代码
+
 int main(void)
 {		
 	uint8_t time;
