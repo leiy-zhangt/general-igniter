@@ -8,14 +8,14 @@
 #include "key.h"
 #include "fuse.h"
 #include "pwm.h"
-
+//test branch
 int main(void)
 {		
 	uint8_t time;
-	int buzzer_gap=300;					//·äÃùÆ÷Ê±¼ä¼ä¸ô
-	uint8_t buzzer_volume=10;		//·äÃùÆ÷ÒôÁ¿0<=buzzer_volume<=379
-	int pwm_gap=2000;						//¶æ»úÑÓ³ÙÊ±¼ä¿ªÉ¡(ms)
-	int fuse_gap=2000;					//µã»ğÍ·ÑÓÊ±¿ªÉ¡Ê±¼ä(ms)
+	int buzzer_gap=300;					//èœ‚é¸£å™¨æ—¶é—´é—´éš”
+	uint8_t buzzer_volume=10;		//èœ‚é¸£å™¨éŸ³é‡0<=buzzer_volume<=379
+	int pwm_gap=2000;						//èˆµæœºå»¶è¿Ÿæ—¶é—´å¼€ä¼(ms)
+	int fuse_gap=2000;					//ç‚¹ç«å¤´å»¶æ—¶å¼€ä¼æ—¶é—´(ms)
 	
 	trigger_config();
 	systick_config();
@@ -26,7 +26,7 @@ int main(void)
 	pwm_config();
 	time=(uint8_t)TIME_SET;
 	gpio_bit_set(LEDPORT,LEDPIN);
-	if(time==0){										//²¦Âë¿ª¹ØÎ´ÉèÖÃÊ±½øÈëËÀÑ­»·
+	if(time==0){										//æ‹¨ç å¼€å…³æœªè®¾ç½®æ—¶è¿›å…¥æ­»å¾ªç¯
 		while(1){
 			BUZZER(0);
 			delay_1ms(500);
@@ -35,7 +35,7 @@ int main(void)
 		}
 	}
 	BUZZER(buzzer_volume);	
-	while(1){												//¶Ì½ÓÃ±Î´Á¬½ÓÊ±·¢³ö¾¯±¨
+	while(1){												//çŸ­æ¥å¸½æœªè¿æ¥æ—¶å‘å‡ºè­¦æŠ¥
 		while(TRIGGER){
 			if(!TRIGGER){
 				delay_1ms(100);
@@ -43,33 +43,33 @@ int main(void)
 				if(!TRIGGER) break;
 			}
 		}
-//		pwm_off;											//²åÈë¶Ì½ÓÃ±Ê±£¬¶æ»úÓÉ´ò¿ª±ä³É¹Ø±Õ
-		for(uint8_t i=0;i<=2;i++){			//²åÈë¶Ì½ÓÃ±·¢³öÌáÊ¾Òô
+//		pwm_off;											//æ’å…¥çŸ­æ¥å¸½æ—¶ï¼Œèˆµæœºç”±æ‰“å¼€å˜æˆå…³é—­
+		for(uint8_t i=0;i<=2;i++){			//æ’å…¥çŸ­æ¥å¸½å‘å‡ºæç¤ºéŸ³
 			BUZZER(buzzer_volume);
 			delay_1ms(buzzer_gap);
 			BUZZER(0);
 			delay_1ms(buzzer_gap);
 		}
-		while(!TRIGGER){								//¶Ì½ÓÃ±¶Ï¿ª¼ì²â
+		while(!TRIGGER){								//çŸ­æ¥å¸½æ–­å¼€æ£€æµ‹
 			if(TRIGGER){
 				delay_1ms(100);
 				if(TRIGGER) break;
 			}
 		}
-		BUZZER(buzzer_volume);		//¶Ì½ÓÃ±¶Ï¿ªÌáÊ¾
+		BUZZER(buzzer_volume);		//çŸ­æ¥å¸½æ–­å¼€æç¤º
 		delay_1ms(buzzer_gap);
 		BUZZER(0);
-		delay_1ms(time*250-100-buzzer_gap);			//µã»ğÍ·1µãÈ¼
+		delay_1ms(time*250-100-buzzer_gap);			//ç‚¹ç«å¤´1ç‚¹ç‡ƒ
 		gpio_bit_set(FUSEPORT,FUSEPIN_1);
 		delay_1ms(500);
 		gpio_bit_reset(FUSEPORT,FUSEPIN_1);
-		delay_1ms(fuse_gap-500);								//µã»ğÍ·2µãÈ¼
+		delay_1ms(fuse_gap-500);								//ç‚¹ç«å¤´2ç‚¹ç‡ƒ
 		gpio_bit_set(FUSEPORT,FUSEPIN_2);
 		delay_1ms(500);
 		gpio_bit_reset(FUSEPORT,FUSEPIN_2);
 //		delay_1ms(pwm_gap-500);
-//		pwm_on;														//¶æ»ú´ò¿ª
-		BUZZER(buzzer_volume);						//µã»ğ³É¹¦¼ì²â
+//		pwm_on;														//èˆµæœºæ‰“å¼€
+		BUZZER(buzzer_volume);						//ç‚¹ç«æˆåŠŸæ£€æµ‹
 		while(1){} ;
 	}
 }
