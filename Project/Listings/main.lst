@@ -1,0 +1,718 @@
+	.text
+	.syntax unified
+	.eabi_attribute	67, "2.09"	@ Tag_conformance
+	.cpu	cortex-m23
+	.eabi_attribute	6, 16	@ Tag_CPU_arch
+	.eabi_attribute	7, 77	@ Tag_CPU_arch_profile
+	.eabi_attribute	8, 0	@ Tag_ARM_ISA_use
+	.eabi_attribute	9, 3	@ Tag_THUMB_ISA_use
+	.eabi_attribute	34, 0	@ Tag_CPU_unaligned_access
+	.eabi_attribute	17, 1	@ Tag_ABI_PCS_GOT_use
+	.eabi_attribute	20, 2	@ Tag_ABI_FP_denormal
+	.eabi_attribute	21, 0	@ Tag_ABI_FP_exceptions
+	.eabi_attribute	23, 1	@ Tag_ABI_FP_number_model
+	.eabi_attribute	24, 1	@ Tag_ABI_align_needed
+	.eabi_attribute	25, 1	@ Tag_ABI_align_preserved
+	.eabi_attribute	38, 1	@ Tag_ABI_FP_16bit_format
+	.eabi_attribute	18, 2	@ Tag_ABI_PCS_wchar_t
+	.eabi_attribute	26, 1	@ Tag_ABI_enum_size
+	.eabi_attribute	14, 0	@ Tag_ABI_PCS_R9_use
+	.file	"main.c"
+	.file	1 "D:\\ProgramFile\\Keil5\\ARM\\ARMCLANG\\Bin\\..\\include" "stdint.h"
+	.section	.text.main,"ax",%progbits
+	.hidden	main                    @ -- Begin function main
+	.globl	main
+	.p2align	2
+	.type	main,%function
+	.code	16                      @ @main
+	.thumb_func
+main:
+.Lfunc_begin0:
+	.file	2 "C:\\Users\\13728\\Desktop\\general igniter\\Project" "../User/main.c"
+	.loc	2 14 0                  @ ../User/main.c:14:0
+	.fnstart
+	.cfi_sections .debug_frame
+	.cfi_startproc
+@ %bb.0:
+	.pad	#24
+	sub	sp, #24
+	.cfi_def_cfa_offset 24
+.Ltmp0:
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	.loc	2 21 2 prologue_end     @ ../User/main.c:21:2
+	bl	trigger_config
+	.loc	2 22 2                  @ ../User/main.c:22:2
+	bl	systick_config
+	.loc	2 23 2                  @ ../User/main.c:23:2
+	bl	led_config
+	.loc	2 24 2                  @ ../User/main.c:24:2
+	bl	key_config
+	.loc	2 25 2                  @ ../User/main.c:25:2
+	bl	timer_config
+	.loc	2 26 2                  @ ../User/main.c:26:2
+	bl	fuse_config
+	.loc	2 27 2                  @ ../User/main.c:27:2
+	bl	pwm_config
+	movs	r0, #9
+	lsls	r5, r0, #27
+	.loc	2 28 16                 @ ../User/main.c:28:16
+	mov	r0, r5
+	bl	gpio_input_port_get
+	mov	r4, r0
+.Ltmp1:
+	@DEBUG_VALUE: main:time <- [DW_OP_LLVM_convert 16 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r4
+	.loc	2 0 16 is_stmt 0        @ ../User/main.c:0:16
+	ldr	r0, __arm_cp.0_0
+	movs	r1, #16
+	.loc	2 29 2 is_stmt 1        @ ../User/main.c:29:2
+	bl	gpio_bit_set
+	.loc	2 30 5                  @ ../User/main.c:30:5
+	lsls	r0, r4, #24
+	movw	r7, #256
+	ldr	r0, __arm_cp.0_1
+	bne	.LBB0_1
+	b	.LBB0_14
+.Ltmp2:
+.LBB0_1:
+	@DEBUG_VALUE: main:time <- [DW_OP_LLVM_convert 16 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r4
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 0 5 is_stmt 0         @ ../User/main.c:0:5
+	movs	r1, #1
+	movs	r2, #10
+	mov	r4, r1
+.Ltmp3:
+	mov	r6, r2
+	.loc	2 38 2 is_stmt 1        @ ../User/main.c:38:2
+	bl	timer_channel_output_pulse_value_config
+	movs	r7, #100
+.Ltmp4:
+.LBB0_2:                                @ =>This Inner Loop Header: Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 40 9                  @ ../User/main.c:40:9
+	mov	r0, r5
+	movw	r1, #256
+	bl	gpio_input_bit_get
+	.loc	2 40 3 is_stmt 0        @ ../User/main.c:40:3
+	cbz	r0, .LBB0_5
+.Ltmp5:
+@ %bb.3:                                @   in Loop: Header=BB0_2 Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 41 8 is_stmt 1        @ ../User/main.c:41:8
+	mov	r0, r5
+	movw	r1, #256
+	bl	gpio_input_bit_get
+.Ltmp6:
+	.loc	2 41 7 is_stmt 0        @ ../User/main.c:41:7
+	cmp	r0, #0
+	bne	.LBB0_2
+.Ltmp7:
+@ %bb.4:                                @   in Loop: Header=BB0_2 Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 42 5 is_stmt 1        @ ../User/main.c:42:5
+	mov	r0, r7
+	bl	delay_1ms
+	.loc	2 43 5                  @ ../User/main.c:43:5
+	ldr	r0, __arm_cp.0_1
+	mov	r1, r4
+	mov	r2, r6
+	bl	timer_channel_output_pulse_value_config
+.Ltmp8:
+	.loc	2 44 9                  @ ../User/main.c:44:9
+	mov	r0, r5
+	movw	r1, #256
+	bl	gpio_input_bit_get
+.Ltmp9:
+	.loc	2 44 8 is_stmt 0        @ ../User/main.c:44:8
+	cmp	r0, #0
+	bne	.LBB0_2
+.Ltmp10:
+.LBB0_5:
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 0 8                   @ ../User/main.c:0:8
+	str	r5, [sp, #8]            @ 4-byte Spill
+	.loc	2 47 3 is_stmt 1        @ ../User/main.c:47:3
+	movw	r2, #256
+	adds	r2, #244
+	ldr	r0, __arm_cp.0_2
+	movs	r4, #0
+	mov	r1, r4
+	str	r2, [sp, #4]            @ 4-byte Spill
+	bl	timer_channel_output_pulse_value_config
+.Ltmp11:
+	@DEBUG_VALUE: i <- 0
+	.loc	2 0 3 is_stmt 0         @ ../User/main.c:0:3
+	movs	r5, #1
+	movs	r0, #10
+	str	r0, [sp, #12]           @ 4-byte Spill
+	movw	r0, #256
+	adds	r0, #44
+	str	r0, [sp, #20]           @ 4-byte Spill
+	str	r4, [sp, #16]           @ 4-byte Spill
+	ldr	r6, __arm_cp.0_1
+	ldr	r7, [sp, #20]           @ 4-byte Reload
+.Ltmp12:
+.LBB0_6:                                @ =>This Inner Loop Header: Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	@DEBUG_VALUE: i <- $r4
+	.loc	2 48 3 is_stmt 1        @ ../User/main.c:48:3
+	cmp	r4, #3
+	bhs	.LBB0_8
+.Ltmp13:
+@ %bb.7:                                @   in Loop: Header=BB0_6 Depth=1
+	@DEBUG_VALUE: i <- $r4
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 49 4                  @ ../User/main.c:49:4
+	mov	r0, r6
+	mov	r1, r5
+	ldr	r2, [sp, #12]           @ 4-byte Reload
+	bl	timer_channel_output_pulse_value_config
+	.loc	2 50 4                  @ ../User/main.c:50:4
+	mov	r0, r7
+	bl	delay_1ms
+	.loc	2 51 4                  @ ../User/main.c:51:4
+	mov	r0, r6
+	mov	r1, r5
+	ldr	r2, [sp, #16]           @ 4-byte Reload
+	bl	timer_channel_output_pulse_value_config
+	.loc	2 52 4                  @ ../User/main.c:52:4
+	mov	r0, r7
+	bl	delay_1ms
+.Ltmp14:
+	.loc	2 48 25                 @ ../User/main.c:48:25
+	adds	r4, r4, #1
+.Ltmp15:
+	@DEBUG_VALUE: i <- $r4
+	.loc	2 0 25 is_stmt 0        @ ../User/main.c:0:25
+	b	.LBB0_6
+.Ltmp16:
+.LBB0_8:
+	@DEBUG_VALUE: i <- $r4
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	movs	r7, #100
+	ldr	r4, [sp, #8]            @ 4-byte Reload
+.Ltmp17:
+.LBB0_9:                                @ =>This Inner Loop Header: Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 54 10 is_stmt 1       @ ../User/main.c:54:10
+	mov	r0, r4
+	movw	r1, #256
+	bl	gpio_input_bit_get
+	.loc	2 54 3 is_stmt 0        @ ../User/main.c:54:3
+	cbnz	r0, .LBB0_12
+.Ltmp18:
+@ %bb.10:                               @   in Loop: Header=BB0_9 Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 55 7 is_stmt 1        @ ../User/main.c:55:7
+	mov	r0, r4
+	movw	r1, #256
+	bl	gpio_input_bit_get
+.Ltmp19:
+	.loc	2 55 7 is_stmt 0        @ ../User/main.c:55:7
+	cmp	r0, #0
+	beq	.LBB0_9
+.Ltmp20:
+@ %bb.11:                               @   in Loop: Header=BB0_9 Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 56 5 is_stmt 1        @ ../User/main.c:56:5
+	mov	r0, r7
+	bl	delay_1ms
+.Ltmp21:
+	.loc	2 57 8                  @ ../User/main.c:57:8
+	mov	r0, r4
+	movw	r1, #256
+	bl	gpio_input_bit_get
+.Ltmp22:
+	.loc	2 57 8 is_stmt 0        @ ../User/main.c:57:8
+	cmp	r0, #0
+	beq	.LBB0_9
+.Ltmp23:
+.LBB0_12:
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 0 8                   @ ../User/main.c:0:8
+	movs	r7, #1
+	movs	r2, #10
+	.loc	2 60 3 is_stmt 1        @ ../User/main.c:60:3
+	str	r2, [sp, #16]           @ 4-byte Spill
+	ldr	r3, __arm_cp.0_3
+	ldr	r0, __arm_cp.0_1
+	mov	r6, r0
+	mov	r1, r7
+	blx	r3
+	.loc	2 61 3                  @ ../User/main.c:61:3
+	ldr	r5, __arm_cp.0_4
+	ldr	r0, [sp, #20]           @ 4-byte Reload
+	blx	r5
+	movs	r2, #0
+	.loc	2 62 3                  @ ../User/main.c:62:3
+	str	r2, [sp, #20]           @ 4-byte Spill
+	mov	r0, r6
+	mov	r1, r7
+	ldr	r3, __arm_cp.0_3
+	blx	r3
+	.loc	2 63 3                  @ ../User/main.c:63:3
+	movw	r0, #3600
+	blx	r5
+	.loc	2 64 3                  @ ../User/main.c:64:3
+	mov	r0, r4
+	movw	r1, #512
+	bl	gpio_bit_set
+	ldr	r6, [sp, #4]            @ 4-byte Reload
+	.loc	2 65 3                  @ ../User/main.c:65:3
+	mov	r0, r6
+	blx	r5
+	.loc	2 66 3                  @ ../User/main.c:66:3
+	mov	r0, r4
+	movw	r1, #512
+	bl	gpio_bit_reset
+	ldr	r0, __arm_cp.0_5
+	.loc	2 67 3                  @ ../User/main.c:67:3
+	blx	r5
+	.loc	2 68 3                  @ ../User/main.c:68:3
+	mov	r0, r4
+	movw	r1, #1024
+	bl	gpio_bit_set
+	.loc	2 69 3                  @ ../User/main.c:69:3
+	mov	r0, r6
+	blx	r5
+	.loc	2 70 3                  @ ../User/main.c:70:3
+	mov	r0, r4
+	movw	r1, #1024
+	bl	gpio_bit_reset
+	.loc	2 71 3                  @ ../User/main.c:71:3
+	ldr	r0, __arm_cp.0_5
+	blx	r5
+	ldr	r2, __arm_cp.0_6
+	.loc	2 72 3                  @ ../User/main.c:72:3
+	ldr	r0, __arm_cp.0_2
+	ldr	r1, [sp, #20]           @ 4-byte Reload
+	ldr	r4, __arm_cp.0_3
+	blx	r4
+	.loc	2 73 3                  @ ../User/main.c:73:3
+	ldr	r0, __arm_cp.0_1
+	mov	r1, r7
+	ldr	r2, [sp, #16]           @ 4-byte Reload
+	blx	r4
+.Ltmp24:
+.LBB0_13:                               @ =>This Inner Loop Header: Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 74 3                  @ ../User/main.c:74:3
+	b	.LBB0_13
+.Ltmp25:
+.LBB0_14:
+	@DEBUG_VALUE: main:time <- [DW_OP_LLVM_convert 16 7, DW_OP_LLVM_convert 8 7, DW_OP_stack_value] $r4
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 0 3 is_stmt 0         @ ../User/main.c:0:3
+	movs	r5, #1
+	movs	r1, #0
+	str	r1, [sp, #20]           @ 4-byte Spill
+	adds	r7, #244
+	mov	r6, r0
+	movs	r4, #10
+.Ltmp26:
+.LBB0_15:                               @ =>This Inner Loop Header: Depth=1
+	@DEBUG_VALUE: main:fuse_gap <- 2000
+	@DEBUG_VALUE: main:pwm_gap <- 2000
+	@DEBUG_VALUE: main:buzzer_volume <- 10
+	@DEBUG_VALUE: main:buzzer_gap <- 300
+	.loc	2 32 4 is_stmt 1        @ ../User/main.c:32:4
+	mov	r0, r6
+	mov	r1, r5
+	ldr	r2, [sp, #20]           @ 4-byte Reload
+	bl	timer_channel_output_pulse_value_config
+	.loc	2 33 4                  @ ../User/main.c:33:4
+	mov	r0, r7
+	bl	delay_1ms
+	.loc	2 34 4                  @ ../User/main.c:34:4
+	mov	r0, r6
+	mov	r1, r5
+	mov	r2, r4
+	bl	timer_channel_output_pulse_value_config
+	.loc	2 35 4                  @ ../User/main.c:35:4
+	mov	r0, r7
+	bl	delay_1ms
+.Ltmp27:
+	.loc	2 31 3                  @ ../User/main.c:31:3
+	b	.LBB0_15
+.Ltmp28:
+	.p2align	2
+@ %bb.16:
+	.loc	2 0 3 is_stmt 0         @ ../User/main.c:0:3
+__arm_cp.0_0:
+	.long	1207960576              @ 0x48000400
+.Lcpi_end0:
+	.size	__arm_cp.0_0, .Lcpi_end0-__arm_cp.0_0
+__arm_cp.0_1:
+	.long	1073742848              @ 0x40000400
+.Lcpi_end1:
+	.size	__arm_cp.0_1, .Lcpi_end1-__arm_cp.0_1
+__arm_cp.0_2:
+	.long	1073750016              @ 0x40002000
+.Lcpi_end2:
+	.size	__arm_cp.0_2, .Lcpi_end2-__arm_cp.0_2
+__arm_cp.0_3:
+	.long	timer_channel_output_pulse_value_config
+.Lcpi_end3:
+	.size	__arm_cp.0_3, .Lcpi_end3-__arm_cp.0_3
+__arm_cp.0_4:
+	.long	delay_1ms
+.Lcpi_end4:
+	.size	__arm_cp.0_4, .Lcpi_end4-__arm_cp.0_4
+__arm_cp.0_5:
+	.long	1500                    @ 0x5dc
+.Lcpi_end5:
+	.size	__arm_cp.0_5, .Lcpi_end5-__arm_cp.0_5
+__arm_cp.0_6:
+	.long	2500                    @ 0x9c4
+.Lcpi_end6:
+	.size	__arm_cp.0_6, .Lcpi_end6-__arm_cp.0_6
+.Lfunc_end0:
+	.size	main, .Lfunc_end0-main
+	.cfi_endproc
+	.cantunwind
+	.fnend
+                                        @ -- End function
+	.type	__ARM_use_no_argv,%object @ @__ARM_use_no_argv
+	.section	.ARM.use_no_argv,"aw",%progbits
+	.globl	__ARM_use_no_argv
+	.p2align	2
+__ARM_use_no_argv:
+	.long	1                       @ 0x1
+	.size	__ARM_use_no_argv, 4
+
+	.globl	__ARM_use_no_argv
+	.section	.debug_str,"MS",%progbits,1
+.Linfo_string0:
+	.asciz	"Component: ARM Compiler 6.14 Tool: armclang [5db06c00]" @ string offset=0
+.Linfo_string1:
+	.asciz	"../User\\main.c"       @ string offset=55
+.Linfo_string2:
+	.asciz	"C:\\Users\\13728\\Desktop\\general igniter\\Project" @ string offset=70
+.Linfo_string3:
+	.asciz	"unsigned char"         @ string offset=117
+.Linfo_string4:
+	.asciz	"uint8_t"               @ string offset=131
+.Linfo_string5:
+	.asciz	"unsigned int"          @ string offset=139
+.Linfo_string6:
+	.asciz	"uint32_t"              @ string offset=152
+.Linfo_string7:
+	.asciz	"unsigned short"        @ string offset=161
+.Linfo_string8:
+	.asciz	"uint16_t"              @ string offset=176
+.Linfo_string9:
+	.asciz	"main"                  @ string offset=185
+.Linfo_string10:
+	.asciz	"int"                   @ string offset=190
+.Linfo_string11:
+	.asciz	"buzzer_gap"            @ string offset=194
+.Linfo_string12:
+	.asciz	"buzzer_volume"         @ string offset=205
+.Linfo_string13:
+	.asciz	"pwm_gap"               @ string offset=219
+.Linfo_string14:
+	.asciz	"fuse_gap"              @ string offset=227
+.Linfo_string15:
+	.asciz	"time"                  @ string offset=236
+.Linfo_string16:
+	.asciz	"i"                     @ string offset=241
+	.section	.debug_loc,"",%progbits
+.Ldebug_loc0:
+	.long	.Ltmp0-.Lfunc_begin0
+	.long	.Ltmp28-.Lfunc_begin0
+	.short	3                       @ Loc expr size
+	.byte	17                      @ DW_OP_consts
+	.byte	172                     @ 300
+	.byte	2                       @ 
+	.long	0
+	.long	0
+.Ldebug_loc1:
+	.long	.Ltmp0-.Lfunc_begin0
+	.long	.Ltmp28-.Lfunc_begin0
+	.short	1                       @ Loc expr size
+	.byte	58                      @ DW_OP_lit10
+	.long	0
+	.long	0
+.Ldebug_loc2:
+	.long	.Ltmp0-.Lfunc_begin0
+	.long	.Ltmp28-.Lfunc_begin0
+	.short	3                       @ Loc expr size
+	.byte	17                      @ DW_OP_consts
+	.byte	208                     @ 2000
+	.byte	15                      @ 
+	.long	0
+	.long	0
+.Ldebug_loc3:
+	.long	.Ltmp0-.Lfunc_begin0
+	.long	.Ltmp28-.Lfunc_begin0
+	.short	3                       @ Loc expr size
+	.byte	17                      @ DW_OP_consts
+	.byte	208                     @ 2000
+	.byte	15                      @ 
+	.long	0
+	.long	0
+.Ldebug_loc4:
+	.long	.Ltmp11-.Lfunc_begin0
+	.long	.Ltmp12-.Lfunc_begin0
+	.short	1                       @ Loc expr size
+	.byte	48                      @ DW_OP_lit0
+	.long	.Ltmp12-.Lfunc_begin0
+	.long	.Ltmp17-.Lfunc_begin0
+	.short	1                       @ Loc expr size
+	.byte	84                      @ DW_OP_reg4
+	.long	0
+	.long	0
+	.section	.debug_abbrev,"",%progbits
+	.byte	1                       @ Abbreviation Code
+	.byte	17                      @ DW_TAG_compile_unit
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	37                      @ DW_AT_producer
+	.byte	14                      @ DW_FORM_strp
+	.byte	19                      @ DW_AT_language
+	.byte	5                       @ DW_FORM_data2
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	16                      @ DW_AT_stmt_list
+	.byte	6                       @ DW_FORM_data4
+	.byte	27                      @ DW_AT_comp_dir
+	.byte	14                      @ DW_FORM_strp
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	2                       @ Abbreviation Code
+	.byte	22                      @ DW_TAG_typedef
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	3                       @ Abbreviation Code
+	.byte	36                      @ DW_TAG_base_type
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	62                      @ DW_AT_encoding
+	.byte	11                      @ DW_FORM_data1
+	.byte	11                      @ DW_AT_byte_size
+	.byte	11                      @ DW_FORM_data1
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	4                       @ Abbreviation Code
+	.byte	46                      @ DW_TAG_subprogram
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	64                      @ DW_AT_frame_base
+	.byte	10                      @ DW_FORM_block1
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	39                      @ DW_AT_prototyped
+	.byte	12                      @ DW_FORM_flag
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	63                      @ DW_AT_external
+	.byte	12                      @ DW_FORM_flag
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	5                       @ Abbreviation Code
+	.byte	52                      @ DW_TAG_variable
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	2                       @ DW_AT_location
+	.byte	6                       @ DW_FORM_data4
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	6                       @ Abbreviation Code
+	.byte	52                      @ DW_TAG_variable
+	.byte	0                       @ DW_CHILDREN_no
+	.byte	3                       @ DW_AT_name
+	.byte	14                      @ DW_FORM_strp
+	.byte	58                      @ DW_AT_decl_file
+	.byte	11                      @ DW_FORM_data1
+	.byte	59                      @ DW_AT_decl_line
+	.byte	11                      @ DW_FORM_data1
+	.byte	73                      @ DW_AT_type
+	.byte	19                      @ DW_FORM_ref4
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	7                       @ Abbreviation Code
+	.byte	11                      @ DW_TAG_lexical_block
+	.byte	1                       @ DW_CHILDREN_yes
+	.byte	17                      @ DW_AT_low_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	18                      @ DW_AT_high_pc
+	.byte	1                       @ DW_FORM_addr
+	.byte	0                       @ EOM(1)
+	.byte	0                       @ EOM(2)
+	.byte	0                       @ EOM(3)
+	.section	.debug_info,"",%progbits
+.Lcu_begin0:
+	.long	.Ldebug_info_end0-.Ldebug_info_start0 @ Length of Unit
+.Ldebug_info_start0:
+	.short	3                       @ DWARF version number
+	.long	.debug_abbrev           @ Offset Into Abbrev. Section
+	.byte	4                       @ Address Size (in bytes)
+	.byte	1                       @ Abbrev [1] 0xb:0xd1 DW_TAG_compile_unit
+	.long	.Linfo_string0          @ DW_AT_producer
+	.short	12                      @ DW_AT_language
+	.long	.Linfo_string1          @ DW_AT_name
+	.long	.Lline_table_start0     @ DW_AT_stmt_list
+	.long	.Linfo_string2          @ DW_AT_comp_dir
+	.long	.Lfunc_begin0           @ DW_AT_low_pc
+	.long	.Lfunc_end0             @ DW_AT_high_pc
+	.byte	2                       @ Abbrev [2] 0x26:0xb DW_TAG_typedef
+	.long	49                      @ DW_AT_type
+	.long	.Linfo_string4          @ DW_AT_name
+	.byte	1                       @ DW_AT_decl_file
+	.byte	62                      @ DW_AT_decl_line
+	.byte	3                       @ Abbrev [3] 0x31:0x7 DW_TAG_base_type
+	.long	.Linfo_string3          @ DW_AT_name
+	.byte	8                       @ DW_AT_encoding
+	.byte	1                       @ DW_AT_byte_size
+	.byte	2                       @ Abbrev [2] 0x38:0xb DW_TAG_typedef
+	.long	67                      @ DW_AT_type
+	.long	.Linfo_string6          @ DW_AT_name
+	.byte	1                       @ DW_AT_decl_file
+	.byte	64                      @ DW_AT_decl_line
+	.byte	3                       @ Abbrev [3] 0x43:0x7 DW_TAG_base_type
+	.long	.Linfo_string5          @ DW_AT_name
+	.byte	7                       @ DW_AT_encoding
+	.byte	4                       @ DW_AT_byte_size
+	.byte	2                       @ Abbrev [2] 0x4a:0xb DW_TAG_typedef
+	.long	85                      @ DW_AT_type
+	.long	.Linfo_string8          @ DW_AT_name
+	.byte	1                       @ DW_AT_decl_file
+	.byte	63                      @ DW_AT_decl_line
+	.byte	3                       @ Abbrev [3] 0x55:0x7 DW_TAG_base_type
+	.long	.Linfo_string7          @ DW_AT_name
+	.byte	7                       @ DW_AT_encoding
+	.byte	2                       @ DW_AT_byte_size
+	.byte	4                       @ Abbrev [4] 0x5c:0x78 DW_TAG_subprogram
+	.long	.Lfunc_begin0           @ DW_AT_low_pc
+	.long	.Lfunc_end0             @ DW_AT_high_pc
+	.byte	1                       @ DW_AT_frame_base
+	.byte	93
+	.long	.Linfo_string9          @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	13                      @ DW_AT_decl_line
+	.byte	1                       @ DW_AT_prototyped
+	.long	212                     @ DW_AT_type
+	.byte	1                       @ DW_AT_external
+	.byte	5                       @ Abbrev [5] 0x73:0xf DW_TAG_variable
+	.long	.Ldebug_loc0            @ DW_AT_location
+	.long	.Linfo_string11         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	16                      @ DW_AT_decl_line
+	.long	212                     @ DW_AT_type
+	.byte	5                       @ Abbrev [5] 0x82:0xf DW_TAG_variable
+	.long	.Ldebug_loc1            @ DW_AT_location
+	.long	.Linfo_string12         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	17                      @ DW_AT_decl_line
+	.long	38                      @ DW_AT_type
+	.byte	5                       @ Abbrev [5] 0x91:0xf DW_TAG_variable
+	.long	.Ldebug_loc2            @ DW_AT_location
+	.long	.Linfo_string13         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	18                      @ DW_AT_decl_line
+	.long	212                     @ DW_AT_type
+	.byte	5                       @ Abbrev [5] 0xa0:0xf DW_TAG_variable
+	.long	.Ldebug_loc3            @ DW_AT_location
+	.long	.Linfo_string14         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	19                      @ DW_AT_decl_line
+	.long	212                     @ DW_AT_type
+	.byte	6                       @ Abbrev [6] 0xaf:0xb DW_TAG_variable
+	.long	.Linfo_string15         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	15                      @ DW_AT_decl_line
+	.long	38                      @ DW_AT_type
+	.byte	7                       @ Abbrev [7] 0xba:0x19 DW_TAG_lexical_block
+	.long	.Ltmp12                 @ DW_AT_low_pc
+	.long	.Ltmp16                 @ DW_AT_high_pc
+	.byte	5                       @ Abbrev [5] 0xc3:0xf DW_TAG_variable
+	.long	.Ldebug_loc4            @ DW_AT_location
+	.long	.Linfo_string16         @ DW_AT_name
+	.byte	2                       @ DW_AT_decl_file
+	.byte	48                      @ DW_AT_decl_line
+	.long	38                      @ DW_AT_type
+	.byte	0                       @ End Of Children Mark
+	.byte	0                       @ End Of Children Mark
+	.byte	3                       @ Abbrev [3] 0xd4:0x7 DW_TAG_base_type
+	.long	.Linfo_string10         @ DW_AT_name
+	.byte	5                       @ DW_AT_encoding
+	.byte	4                       @ DW_AT_byte_size
+	.byte	0                       @ End Of Children Mark
+.Ldebug_info_end0:
+	.ident	"Component: ARM Compiler 6.14 Tool: armclang [5db06c00]"
+	.section	".note.GNU-stack","",%progbits
+	.eabi_attribute	30, 4	@ Tag_ABI_optimization_goals
+	.ARM_attribute	16, 1	@ Tag_AV_eba
+	.section	.debug_line,"",%progbits
+.Lline_table_start0:
