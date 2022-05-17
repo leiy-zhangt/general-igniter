@@ -38,5 +38,6 @@ void timer_config(void)
     timer_auto_reload_shadow_enable(TIMER_X);
     /* auto-reload preload enable */
     timer_enable(TIMER_X);
+    BUZZER(0);
 }
 

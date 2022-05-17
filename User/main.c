@@ -12,7 +12,7 @@
 
 int main(void)
 {		
-	uint8_t time;
+	volatile uint8_t time;
 	int buzzer_gap=300;					//蜂鸣器时间间隔
 	uint8_t buzzer_volume=10;		//蜂鸣器音量0<=buzzer_volume<=379
 	int pwm_gap=2000;						//舵机延迟时间开伞(ms)
