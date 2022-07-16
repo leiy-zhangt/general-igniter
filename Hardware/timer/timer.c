@@ -1,7 +1,7 @@
 #include "timer.h"
 void timer_config(void)
 {
-		rcu_periph_clock_enable(RCU_GPIOB);
+	rcu_periph_clock_enable(RCU_GPIOB);
     gpio_mode_set(TIMERPORT, GPIO_MODE_AF, GPIO_PUPD_NONE, TIMERPIN);
     gpio_output_options_set(TIMERPORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,TIMERPIN);
     gpio_af_set(TIMERPORT, GPIO_AF_1, TIMERPIN);

@@ -1,7 +1,7 @@
 #include "pwm.h"
 void pwm_config(void)
 {
-		rcu_periph_clock_enable(RCU_GPIOB);
+	rcu_periph_clock_enable(RCU_GPIOB);
     gpio_mode_set(PWMPORT, GPIO_MODE_AF, GPIO_PUPD_NONE, PWMPIN);
     gpio_output_options_set(PWMPORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ,PWMPIN);
     gpio_af_set(PWMPORT, GPIO_AF_0, PWMPIN);
