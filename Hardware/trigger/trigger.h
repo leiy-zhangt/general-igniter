@@ -4,9 +4,9 @@
 #include "gd32e23x.h"
 #include "gd32e23x_libopt.h"
 
-#define TRIGGERCLK RCU_GPIOA
-#define TRIGGERPORT GPIOA
-#define TRIGGERPIN GPIO_PIN_8
+#define TRIGGERCLK RCU_GPIOB
+#define TRIGGERPORT GPIOB
+#define TRIGGERPIN GPIO_PIN_6
 
 #define TRIGGER gpio_input_bit_get(TRIGGERPORT,TRIGGERPIN)
 

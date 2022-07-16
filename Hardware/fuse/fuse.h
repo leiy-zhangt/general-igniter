@@ -6,8 +6,8 @@
 
 #define FUSECLK RCU_GPIOA
 #define FUSEPORT GPIOA
-#define FUSEPIN_1 GPIO_PIN_9
-#define FUSEPIN_2 GPIO_PIN_10
+#define FUSEPIN_1 GPIO_PIN_8
+#define FUSEPIN_2 GPIO_PIN_15
 
 //#define FUSE gpio_input_bit_get(FUSEPORT,FUSEPIN)
 

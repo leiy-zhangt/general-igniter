@@ -6,7 +6,7 @@
 
 #define LEDCLK RCU_GPIOB
 #define LEDPORT GPIOB
-#define LEDPIN GPIO_PIN_4
+#define LEDPIN GPIO_PIN_5
 
 void led_config(void);
 
